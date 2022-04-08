@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Register from "./components/SignUp.vue";
 </script>
 
 <template>
@@ -17,7 +16,7 @@ import Register from "./components/SignUp.vue";
 	<main role="main">
 		<div class="jumbotron">
 			<div class="container">
-				<Register />
+				<router-view></router-view>
 			</div>
 		</div>
 	</main>

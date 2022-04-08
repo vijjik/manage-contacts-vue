@@ -3,7 +3,7 @@
 
 <template>
 	<div class="greetings">
-		<div>Signup Here!</div>>
+		<div>Signup Here!</div>
 	</div>
 </template>
 

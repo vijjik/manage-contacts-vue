@@ -4,16 +4,31 @@ import Register from "./components/SignUp.vue";
 
 <template>
 	<header>
-		<img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-		<div class="wrapper">
-			<h1>Empolyee Contacts Managing Tool</h1>1
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<img alt="Vue logo" class="logo col-xs-2" src="./assets/logo.svg" width="125" height="125" />
+					<h1 class="col-xs-10">Empolyee Contacts Managing Tool</h1>
+				</div>
+			</div>
 		</div>
 	</header>
 
-	<main>
-		<Register />
+	<main role="main">
+		<div class="jumbotron">
+			<div class="container">
+				<Register />
+			</div>
+		</div>
 	</main>
+
+	<footer role="contentinfo">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">Footer content</div>
+			</div>
+		</div>
+	</footer>
 </template>
 
 <style>

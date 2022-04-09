@@ -21,7 +21,7 @@ export default defineComponent({
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-center m-3" v-if="contactsList.length === 0">
+				<tr class="text-center m-3" v-if="contactsList && contactsList.length === 0">
 					<td colspan="4">No Contacts created Yet!</td>
 				</tr>
 				<tr v-for="(contact, index) in contactsList">

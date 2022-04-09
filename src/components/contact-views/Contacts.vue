@@ -11,7 +11,10 @@ export default defineComponent({
 			getContactsCount: "getContactsCount"
 		}),
 	},
-	components: { ContactsList, CreateContact }
+	components: { ContactsList, CreateContact },
+	created() {
+		console.log('this.getContacts', this.getContacts);
+	}
 })
 </script>
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapMutations } from 'vuex'
 
 export default defineComponent({
 	// type inference enabled
@@ -8,16 +9,20 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			username: '',
-			password: '',
+			username: 'asd@inmar.com',
+			password: 'ssdsdf',
 			submitted: false,
 		}
 	},
 	methods: {
+		...mapMutations({
+			setLogin: 'setLoginStatus' // map `this.setLogin()` to `this.$store.commit('increment')`
+		}),
 		handleSubmit(e) {
 			this.submitted = true;
 			const { username, password } = this;
 			if (username && password) {
+				this.setLogin(true);
 				this.$router.push({ name: 'user', params: { 'userId': username } })
 			}
 		}

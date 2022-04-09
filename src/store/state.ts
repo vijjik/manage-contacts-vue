@@ -3,6 +3,11 @@ import { createStore } from 'vuex'
 export const store = createStore({
 	state: {
 		loggedIn: false,
+		contacts: [],
+		// contacts: [
+		// 	{ 'contactid': 1, 'firstname': 'Contact - 1', 'lastname': 'contact-ls-1', 'phone': 'asdaasasd',},
+		// 	{ 'contactid': 2, 'firstname': 'Contact - 2', 'lastname': 'contact-ls-2', 'phone': '9923232323', },
+		// ],
 		employees: [
 			{ 'empname': 'e1', 'empid': 1, 'active': true },
 			{ 'empname': 'e2', 'empid': 2, 'active': true },
@@ -15,7 +20,11 @@ export const store = createStore({
 		]
 	},
 	getters: {
+		getLoginStatus: (state) => { return state.loggedIn },
+
 		getGroups: (state) => { return state.groups },
+		getContacts: (state) => { return state.contacts },
+		getContactsCount: (state) => { return state.contacts.length },
 		getContactsInGroup: (state, getters) => (groupid: string) => {
 			const group = getters.getGroupById(groupid);
 			return group.groupcontacts;
@@ -48,6 +57,13 @@ export const store = createStore({
 	// 		return group.groupcontacts;
 	// 	},
 	// },
-	mutations: {},
+	mutations: {
+		setLoginStatus: (state, flag: boolean) => { state.loggedIn = flag },
+		setContact: (state, contact: object) => {
+			console.log('contact added', contact)
+			state.contacts.push(contact)
+			console.log('contact added', state.contacts)
+		},
+	},
 	actions: {},
 })

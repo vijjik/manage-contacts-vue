@@ -6,9 +6,20 @@ export default defineComponent({
 	props: {
 		name: String
 	},
+	data() {
+		return {
+			username: '',
+			password: '',
+			submitted: false,
+		}
+	},
 	methods: {
-		handleSubmit() {
-			console.log('inside submit');
+		handleSubmit(e) {
+			this.submitted = true;
+			const { username, password } = this;
+			if (username && password) {
+				this.$router.push({ name: 'user', params: { 'userId': username } })
+			}
 		}
 	}
 })
@@ -16,30 +27,39 @@ export default defineComponent({
 
 <template>
 	<div class="signin-wrapper">
-		<form>
+		<h2>Login</h2>
+		<form @submit.prevent="handleSubmit">
 			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
+				<label for="username">Email</label>
 				<input
-					type="text"
-					pattern="[A-Za-z]{3}"
+					type="email"
+					pattern=".+@inmar\.com"
+					placeholder="username@inmar.com"
+					v-model="username"
+					name="username"
 					class="form-control"
-					id="exampleInputEmail1"
-					aria-describedby="emailHelp"
+					:class="{ 'is-invalid': submitted && !username }"
 				/>
-				<small
-					id="emailHelp"
-					class="form-text text-muted"
-				>We'll never share your email with anyone else.</small>
+				<div
+					v-show="submitted && !username"
+					class="invalid-feedback"
+				>Email is invalid (ex: username@inmar.com)</div>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" />
+				<label for="password">Password</label>
+				<input
+					type="password"
+					v-model="password"
+					name="password"
+					class="form-control"
+					:class="{ 'is-invalid': submitted && !password }"
+				/>
+				<div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
 			</div>
-			<div class="form-group form-check">
-				<input type="checkbox" class="form-check-input" id="exampleCheck1" />
-				<label class="form-check-label" for="exampleCheck1">Check me out</label>
+			<div class="form-group">
+				<button class="btn btn-primary">Login</button>
+				<router-link to="/register" class="btn btn-link">SignUp Here</router-link>
 			</div>
-			<button type="submit" class="btn btn-primary" @submit.prevent="handleSubmit">Sign In</button>
 		</form>
 	</div>
 </template>

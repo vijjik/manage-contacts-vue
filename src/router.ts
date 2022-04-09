@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Register from './components/Register.vue'
-import SignIn from './components/Register.vue'
+import SignIn from './components/SignIn.vue'
 
 export const router = createRouter({
 	history: createWebHistory(),

@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 export const store = createStore({
 	state: {
 		loggedIn: false,
+		loggedUser: {},
 		contacts: [],
 		groups: [],
 
@@ -31,6 +32,9 @@ export const store = createStore({
 	},
 	mutations: {
 		setLoginStatus: (state, flag: boolean) => { state.loggedIn = flag },
+		setLoggedUser: (state, loginObj: object) => {
+			state.loggedUser = loginObj;
+		},
 		setContact: (state, contact: object) => {
 			state.contacts.push(contact)
 		},

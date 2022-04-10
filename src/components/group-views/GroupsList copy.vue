@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import ContactsList from '../contact-views/ContactsList.vue';
 import Multiselect from '@vueform/multiselect'
 
@@ -13,14 +13,18 @@ export default defineComponent({
 			selectedContacts: [],
 		};
 	},
+	computed: {
+		...mapState('contactState', {
+			userContacts: 'contacts', // passing the string value is the same as state => state.contacts
+		}),
+	},
 	methods: {
-		...mapGetters({
+		...mapGetters('contactState', {
 			getContactsCount: "getContactsCount",
 			getContactsById: "getContactsById",
-			getContacts: "getContacts",
 		}),
 		addContactsToGroup() {
-			console.log("Add contacts to group", this.getContactsById([1]));
+			// console.log("Add contacts to group", this.getContactsById([1]));
 		}
 	},
 	created() {
@@ -87,7 +91,7 @@ export default defineComponent({
 				:id="'tab-' + grpid"
 				role="tabpanel"
 			>
-				<ContactsList :contacts-list="getContacts()" />
+				<ContactsList :contacts-list="userContacts" />
 			</div>
 		</div>
 	</div>

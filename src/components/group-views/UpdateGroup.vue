@@ -3,10 +3,6 @@ import { defineComponent } from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default defineComponent({
-	props: {
-		groupData: Object,
-		default: null,
-	},
 	data() {
 		return {
 			currentGroup: {
@@ -17,10 +13,10 @@ export default defineComponent({
 		};
 	},
 	methods: {
-		...mapGetters({
+		...mapGetters('groupState', {
 			getGroupsCount: "getGroupsCount"
 		}),
-		...mapMutations({
+		...mapMutations('groupState', {
 			setGroup: "setGroup"
 		}),
 		updateGroup() {
@@ -46,33 +42,38 @@ export default defineComponent({
 </script>
 
 <template>
-	<form class="mb-3" @submit.prevent="updateGroup">
-		<div class="row">
-			<div class="col">
-				<input
-					type="text"
-					v-model="currentGroup.groupName"
-					class="form-control"
-					placeholder="Enter Group Name"
-					required
-				/>
-			</div>
-			<div class="col">
-				<div class="form-check">
+	<div class="groupupdate-container border border-info mb-3 p-3 rounded">
+		<h5 class="text-secondary">Add Group</h5>
+		<form class="mb-3" @submit.prevent="updateGroup">
+			<div class="row">
+				<div class="col">
 					<input
-						class="form-check-input"
-						type="checkbox"
-						id="check1"
-						name="option1"
-						v-model="currentGroup.activeFlag"
-						checked
+						type="text"
+						v-model="currentGroup.groupName"
+						class="form-control"
+						placeholder="Enter Group Name"
+						required
 					/>
-					<label class="form-check-label">Enable/Disable Group</label>
+				</div>
+				<div class="col">
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="check1"
+							name="option1"
+							v-model="currentGroup.activeFlag"
+							checked
+						/>
+						<label class="form-check-label">Enable/Disable Group</label>
+					</div>
+				</div>
+				<div class="col">
+					<button type="submit" class="btn btn-primary btn-sm">Create Group</button>
 				</div>
 			</div>
-		</div>
-		<button type="submit" class="btn btn-primary btn-sm mt-3">Create Contact</button>
-	</form>
+		</form>
+	</div>
 </template>
 
 <style scoped>

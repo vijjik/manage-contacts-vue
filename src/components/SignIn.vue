@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default defineComponent({
 	// type inference enabled
@@ -9,24 +9,35 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			username: 'asd@inmar.com',
-			password: 'ssdsdf',
+			username: 'someone@inmar.com',
+			password: 'some',
 			submitted: false,
 		}
 	},
+	computed: {
+		...mapGetters('userState', {
+			authentiCateLogn: 'authentiCateLogn'
+		})
+	},
 	methods: {
-		...mapMutations({
-			setLogin: 'setLoginStatus' // map `this.setLogin()` to `this.$store.commit('increment')`
+		...mapMutations('userState', {
+			setLoginStatus: 'setLoginStatus'
 		}),
 		handleSubmit() {
 			this.submitted = true;
 			const { username, password } = this;
 			if (username && password) {
-				this.setLogin(true);
-				this.$router.push({ name: 'user', params: { 'userId': username } })
+				console.log(this.authentiCateLogn(username, password));
+				if (this.authentiCateLogn(username, password)) {
+					this.setLoginStatus(true);
+					this.$router.push({ name: 'user', params: { 'userId': username } })
+				}
+				else {
+					alert('User Not Fount, Please Register');
+				}
 			}
 		}
-	}
+	},
 })
 </script>
 

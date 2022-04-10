@@ -31,7 +31,7 @@ export const router = createRouter({
 			},
 			beforeEnter: (to, from, next) => {
 				// reject the navigation if not coming from loggin
-				const loginStatus = store.state.loggedIn;
+				const loginStatus = store.state.userState.loggedIn;
 				if (!loginStatus) {
 					next("/")
 				}

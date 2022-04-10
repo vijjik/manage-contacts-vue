@@ -1,60 +1,49 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { mapGetters } from 'vuex'
-import ContactsList from '../contact-views/ContactsList.vue'
+import { mapGetters, mapState } from 'vuex'
 
 export default defineComponent({
-	props: {
-		groupList: Array,
-		default: null,
-	},
-	data() {
-		return {
-			selectedContacts: [],
-		};
-	},
-	methods: {
-		...mapGetters({
-			getGroups: "getGroups",
-			getContacts: "getContacts"
+	computed: {
+		...mapState('groupState', {
+			groupList: 'groups', // passing the string value is the same as state => state.contacts
 		}),
 	},
-	created() {
-	},
-	components: { ContactsList }
 })
 </script>
 
 <template>
-	<div class="groups-list" v-if="groupList && groupList.length">
+	<div
+		class="groups-list-container border border-info mb-3 p-3 rounded"
+		v-if="groupList && groupList.length"
+	>
+		<h5 class="text-secondary">Groups List</h5>
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item" role="presentation" v-for="({ groupname, groupid }, index) in groupList">
-				<div>
-					<a
-						class="nav-link"
-						:class="(index == 0) ? 'active' : ''"
-						data-toggle="tab"
-						:href="'#tab-' + groupid"
-						role="tab"
-					>{{ groupname }}</a>
-					<i class="bi bi-gear"></i>
-				</div>
+			<li class="nav-item" v-for="({ groupname, groupid }, index) in groupList">
+				<a
+					class="nav-link"
+					:class="(index === 0 ? ' active' : '')"
+					:id="'group' + (index + 1) + '-tab'"
+					data-toggle="tab"
+					:href="'#group' + (index + 1)"
+					role="tab"
+				>{{ groupname }}</a>
 			</li>
 		</ul>
-		<div class="tab-content mb-3" id="myTabContent">
+		<div class="tab-content" id="myTabContent">
 			<div
-				v-for="({ groupid }, index) in groupList"
 				class="tab-pane fade"
-				:class="(index == 0) ? ' show active' : ''"
-				:id="'tab-' + groupid"
+				:class="(index === 0 ? ' show active' : '')"
+				:id="'group' + (index + 1)"
 				role="tabpanel"
-			>
-				<ContactsList :contacts-list="getContacts()"></ContactsList>
-			</div>
+				v-for="({ groupname, groupid }, index) in groupList"
+			>{{ groupname }}</div>
 		</div>
 	</div>
 	<div v-else>
-		<div class="alert alert-primary" role="alert">No Groups Created Yet! Click on Create Groups</div>
+		<div class="alert alert-primary" role="alert">
+			No Groups Created Yet! Click on
+			<b>Create Group</b> Button
+		</div>
 	</div>
 </template>
 
@@ -62,4 +51,7 @@ export default defineComponent({
 @import "@vueform/multiselect/themes/default.css";
 </style>
 <style scoped>
+.groups-list-container {
+	min-height: 100px;
+}
 </style>

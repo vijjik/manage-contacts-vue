@@ -8,6 +8,16 @@ export default defineComponent({
 		name: String
 	},
 	data() {
+		// return {
+		// 	username: 'someone@inmar.com',
+		// 	firstname: 'someone',
+		// 	lastname: 'somelast',
+		// 	aadhar: '121212121212',
+		// 	password: 'some',
+		// 	submitted: false,
+		// 	domainName: '@inmar.com',
+		// 	registeSuccess: false,
+		// }
 		return {
 			username: '',
 			firstname: '',
@@ -20,7 +30,7 @@ export default defineComponent({
 		}
 	},
 	methods: {
-		...mapMutations({
+		...mapMutations('userState', {
 			setLoggedUser: 'setLoggedUser' // map `this.setLogin()` to `this.$store.commit('increment')`
 		}),
 		signup() {

@@ -13,10 +13,10 @@ export default defineComponent({
 		};
 	},
 	methods: {
-		...mapGetters({
+		...mapGetters('contactState', {
 			getContactsCount: "getContactsCount"
 		}),
-		...mapMutations({
+		...mapMutations('contactState', {
 			setContact: "setContact"
 		}),
 		createContact() {
@@ -31,8 +31,9 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="container">
-		<form class="mb-3" @submit.prevent="createContact">
+	<div class="createcontact-container border border-info mb-3 p-3 rounded">
+		<h5 class="text-secondary">Update Contact</h5>
+		<form @submit.prevent="createContact">
 			<div class="row">
 				<div class="col">
 					<input
@@ -62,8 +63,10 @@ export default defineComponent({
 					/>
 					<small>Format: 1234-454-678</small>
 				</div>
+				<div class="col">
+					<button type="submit" class="btn btn-primary btn-sm mt-1">Create Contact</button>
+				</div>
 			</div>
-			<button type="submit" class="btn btn-primary btn-sm mt-3">Create Contact</button>
 		</form>
 	</div>
 </template>

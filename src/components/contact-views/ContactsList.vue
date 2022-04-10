@@ -1,16 +1,26 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
 	props: {
 		contactsList: Array,
 		default: [],
 	},
+	methods: {
+		...mapGetters('contactState', {
+			getContactsCount: "getContactsCount"
+		}),
+	}
 })
 </script>
 
 <template>
-	<div class="container">
+	<div class="contactlist-wrapper border border-info mb-3 p-3 rounded">
+		<h5 class="text-secondary">
+			Contacts List
+			<b>({{ getContactsCount() }})</b>
+		</h5>
 		<table class="table">
 			<thead>
 				<tr>

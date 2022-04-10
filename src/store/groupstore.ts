@@ -1,9 +1,9 @@
 const state = {
-	// groups: [],
-	groups: [
-		{ 'groupname': 'Default', 'groupid': 1, 'groupactive': false, 'contacts': [2, 1] },
-		{ 'groupname': 'Group1', 'groupid': 2, 'groupactive': false, 'contacts': [1, 4] }
-	]
+	groups: [],
+	// groups: [
+	// 	{ 'groupname': 'Default', 'groupid': 1, 'groupactive': false, 'contacts': [2, 1] },
+	// 	{ 'groupname': 'Group1', 'groupid': 2, 'groupactive': false, 'contacts': [1, 4] }
+	// ]
 };
 const mutations = {
 	setGroup: (state: { groups: object[]; }, group: object) => {

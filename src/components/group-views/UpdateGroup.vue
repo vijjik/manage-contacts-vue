@@ -24,8 +24,8 @@ export default defineComponent({
 				this.setGroup({
 					'groupname': this.currentGroup.groupName,
 					'groupactive': this.currentGroup.activeFlag,
-					'groupid': this.getGroupsCount() + 1
-
+					'groupid': this.getGroupsCount() + 1,
+					'contacts': [],
 				});
 				this.resetCurrentGroup();
 			}

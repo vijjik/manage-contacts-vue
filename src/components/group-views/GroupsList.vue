@@ -26,7 +26,6 @@ export default defineComponent({
 		getContactsUnderGroup(groupid: number) {
 			if (groupid) {
 				const contactids = this.getGroupContactIds(groupid);
-				console.log(contactids);
 				this.contactUnderGroup = this.getContactsById(contactids);
 			}
 		},
@@ -60,8 +59,12 @@ export default defineComponent({
 						data-toggle="tab"
 						:href="'#group' + (index + 1)"
 						role="tab"
-						@click="getContactsUnderGroup(groupid)"
-					>{{ groupname }}</a>
+						@click.prevent="getContactsUnderGroup(groupid)"
+					>
+						{{ groupname }}
+						<!-- <i class="fa-solid fa-user"></i> -->
+						<!-- <small>Edit</small> -->
+					</a>
 				</li>
 			</ul>
 			<div class="tab-content border border-info mb-3 p-3 rounded" id="myTabContent">

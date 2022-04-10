@@ -1,8 +1,9 @@
 const state = {
 	loggedIn: false,
-	loggedUser: [
-		{ 'username': 'someone@inmar.com', 'password': 'some', 'firstname': 'someone', 'lastname': 'somelast', 'aadhar': '121212121212' }
-	],
+	loggedUser: [],
+	// loggedUser: [
+	// 	{ 'username': 'someone@inmar.com', 'password': 'some', 'firstname': 'someone', 'lastname': 'somelast', 'aadhar': '121212121212' }
+	// ],
 };
 const mutations = {
 	setLoginStatus: (state: { loggedIn: boolean; }, flag: boolean) => { state.loggedIn = flag },

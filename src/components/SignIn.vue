@@ -9,8 +9,8 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			username: 'someone@inmar.com',
-			password: 'some',
+			username: '',
+			password: '',
 			submitted: false,
 		}
 	},
@@ -32,7 +32,7 @@ export default defineComponent({
 					this.$router.push({ name: 'user', params: { 'userId': username } })
 				}
 				else {
-					alert('User Not Fount, Please Register');
+					alert('User Not Found, Please Register Or Cross Check Details');
 				}
 			}
 		}

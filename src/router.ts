@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Register from './components/Register.vue'
 import SignIn from './components/SignIn.vue'
 import User from './components/User.vue'
-import GroupsVue from './components/Groups.vue'
+import GroupsVue from './components/group-views/Groups.vue'
 import ContactsVue from './components/contact-views/Contacts.vue'
 import { store } from './store/state'
 

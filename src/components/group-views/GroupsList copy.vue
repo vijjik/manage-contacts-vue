@@ -1,13 +1,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapGetters } from 'vuex'
-import ContactsList from './contact-views/ContactsList.vue';
+import ContactsList from '../contact-views/ContactsList.vue';
 import Multiselect from '@vueform/multiselect'
 
 export default defineComponent({
 	data() {
 		return {
-			groups: [],
+			groups: [
+				{ 'grpname': 'group 1', 'grpid': 'g1', 'active': true, 'groupcontacts': [1, 2] },
+			],
 			selectedContacts: [],
 		};
 	},
@@ -38,18 +40,21 @@ export default defineComponent({
 		</p>
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item" role="presentation" v-for="({ grpname, grpid }, index) in groups">
-				<a
-					class="nav-link"
-					:class="(index == 0) ? 'active' : ''"
-					data-toggle="tab"
-					:href="'#tab-' + grpid"
-					role="tab"
-				>{{ grpname }}</a>
+				<div>
+					<a
+						class="nav-link"
+						:class="(index == 0) ? 'active' : ''"
+						data-toggle="tab"
+						:href="'#tab-' + grpid"
+						role="tab"
+					>{{ grpname }}</a>
+					<i class="bi bi-gear"></i>
+				</div>
 			</li>
 		</ul>
-		<div class="tab-content" id="myTabContent">
+		<div class="tab-content mb-3" id="myTabContent">
 			<div class="row">
-				<div class="col-xs-4">
+				<div class="col-lg-5">
 					<Multiselect
 						v-model="selectedContacts"
 						mode="tags"
@@ -74,7 +79,7 @@ export default defineComponent({
 					>Add Contacts</button>
 				</div>
 			</div>
-			<p>{{ selectedContacts }}</p>
+			<!-- <p>{{ selectedContacts }}</p> -->
 			<div
 				v-for="({ grpname, grpid }, index) in groups"
 				class="tab-pane fade"

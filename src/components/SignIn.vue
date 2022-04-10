@@ -18,7 +18,7 @@ export default defineComponent({
 		...mapMutations({
 			setLogin: 'setLoginStatus' // map `this.setLogin()` to `this.$store.commit('increment')`
 		}),
-		handleSubmit(e) {
+		handleSubmit() {
 			this.submitted = true;
 			const { username, password } = this;
 			if (username && password) {
@@ -31,9 +31,8 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="signin-wrapper">
-		<h2>Login</h2>
-		<form @submit.prevent="handleSubmit">
+	<div class="row signin-wrapper justify-content-md-center pt-5">
+		<form @submit.prevent="handleSubmit" class="col-xs-12 col-lg-6 border border-info rounded p-3">
 			<div class="form-group">
 				<label for="username">Email</label>
 				<input

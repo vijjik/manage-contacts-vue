@@ -22,7 +22,7 @@ export default defineComponent({
 			</thead>
 			<tbody>
 				<tr class="text-center m-3" v-if="contactsList && contactsList.length === 0">
-					<td colspan="4">No Contacts created Yet!</td>
+					<td colspan="4">Contacts List is Empty</td>
 				</tr>
 				<tr v-for="(contact, index) in contactsList">
 					<th scope="row">{{ index + 1 }}</th>

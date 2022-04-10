@@ -11,9 +11,6 @@ export default defineComponent({
 		}),
 	},
 	components: { ContactsList, CreateContact },
-	created() {
-		// console.log('this.getContacts', this.getContacts);
-	},
 	methods: {
 		...mapGetters('contactState', {
 			getContactsCount: "getContactsCount"

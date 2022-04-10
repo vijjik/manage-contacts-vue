@@ -27,7 +27,6 @@ export default defineComponent({
 			this.submitted = true;
 			const { username, password } = this;
 			if (username && password) {
-				console.log(this.authentiCateLogn(username, password));
 				if (this.authentiCateLogn(username, password)) {
 					this.setLoginStatus(true);
 					this.$router.push({ name: 'user', params: { 'userId': username } })
